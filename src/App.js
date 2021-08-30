@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from './components/Navbar'
-import Main from './containers/Main'
-import About from './containers/About'
+import Main from './pages/Main'
+import About from './pages/About'
 import CardDetails from './components/CardDetails'
 
 const Container = styled.div`
