@@ -55,6 +55,16 @@ const Navbar = () => {
                 About
               </MenuListItemLink>
             </MenuListItem>
+            <MenuListItem>
+              <MenuListItemLink to="/createcard">
+                CreateCard
+              </MenuListItemLink>
+            </MenuListItem>
+            <MenuListItem>
+              <MenuListItemLink to="/auth">
+                Auth
+              </MenuListItemLink>
+            </MenuListItem>
           </MenuList>
         </Nav>
 

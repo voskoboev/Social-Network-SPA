@@ -17,6 +17,10 @@ const Global = createGlobalStyle`
     box-sizing: inherit;
   }
 
+  body {
+    font-family: Arial, sans-serif;
+  }
+
   a {
     text-decoration: none;
   }

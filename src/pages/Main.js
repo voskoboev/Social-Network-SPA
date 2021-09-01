@@ -11,20 +11,20 @@ import Loader from '../components/UI/Loader'
 const Main = () => {
   const [images, setImages] = useState([])
 
-  const ACCESS_KEY = process.env.REACT_APP_API_ACCESS_KEY
+  // const ACCESS_KEY = process.env.REACT_APP_API_ACCESS_KEY
 
-  const fetchImages = async () => {
-    try {
-      await axios.get(`
-        https://api.unsplash.com/photos/?client_id=${ACCESS_KEY}&count=10 
-     `).then(response => setImages(response.data))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const fetchImages = async () => {
+  //   try {
+  //     await axios.get(`
+  //       https://api.unsplash.com/photos/?client_id=${ACCESS_KEY}&count=10 
+  //    `).then(response => setImages(response.data))
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   useEffect(() => {
-    fetchImages()
+    // fetchImages()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -34,13 +34,15 @@ const Main = () => {
       <h1>
         Main
       </h1>
-      {
+
+      
+      {/* {
         images.length === 0
           ? <Loader />
           : <CardList
             images={images}
           />
-      }
+      } */}
     </>
   )
 
