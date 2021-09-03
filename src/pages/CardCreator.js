@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 
 const PageTitle = styled.h1`
@@ -19,10 +19,18 @@ const TitleInput = styled.input`
   border: 2px solid #d9d9d9;
 `
 
+// const ImageInput = styled.input`
+//   width: 300px;
+//   padding: 5px;
+//   margin-bottom: 20px;
+//   border-radius: 10px;
+//   border: 2px solid #d9d9d9;
+// `
+
 const Textarea = styled.textarea`
   resize: none;
   width: 300px;
-  height: 200px;
+  height: 70px;
   padding: 5px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -36,30 +44,54 @@ const SubmitButton = styled.button`
   border: 2px solid #d9d9d9;
   background-color: #d9d9d9;
   transition: .2s all ease;
+  cursor: pointer;
 
   &:hover {
     background-color: transparent;
     transition: .2s all ease;
   }
+
+  &:active {
+    background-color: #d9d9d9;
+    transition: .2s all ease;
+  }
 `
 
-const CreateCard = () => {
+const CardCreator = ({ title, body, setBody, setTitle, addCard }) => {
+
+  // const clearInputs = () => {
+
+  // }
+
+  // const prventFormDefault = ev => {
+  //   ev.preventDefault()
+  // }
+
   return (
     <>
       <PageTitle>
         Create Card
       </PageTitle>
-      <Form>
-
+      <Form
+        // onSubmit={prventFormDefault}
+      >
         <TitleInput
           type="text"
           placeholder="Title"
+          value={title}
+          onChange={ev => setTitle(ev.target.value)}
         />
+        {/* <ImageInput
+          type="file"
+          alt="image-input"
+        /> */}
         <Textarea
           placeholder="Your Message"
+          value={body}
+          onChange={ev => setBody(ev.target.value)}
         />
         <SubmitButton
-          type="submit"
+          onClick={addCard}
         >
           Submit
         </SubmitButton>
@@ -68,4 +100,4 @@ const CreateCard = () => {
   )
 }
 
-export default CreateCard
+export default CardCreator

@@ -1,22 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// const Image = styled.img`
-//   width: 200px;
-//   height: 200px;
-// `
+const CardItem = styled.div`
+  padding: 15px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
-const Card = ({ image }) => (
-  <div>
+const CardItemTitle = styled.h2`
+  margin-bottom: 20px;
+`
 
-  </div>
 
-  // <li>
-  //   <Image
-  //     src={image.urls.small}
-  //     alt="images"
-  //   />
-  // </li>
-)
+const Card = ({ card }) => {
+  const { title, body } = card
+
+  return (
+    <CardItem>
+      <CardItemTitle>
+        {title}
+      </CardItemTitle>
+      <div>
+        {body}
+      </div>
+    </CardItem>
+
+  )
+}
 
 export default Card

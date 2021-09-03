@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
 import About from './pages/About'
-import CreateCard from './pages/CreateCard'
+import CreateCard from './pages/CardCreator'
 import Auth from './pages/Auth'
 import CardDetails from './components/CardDetails'
 
