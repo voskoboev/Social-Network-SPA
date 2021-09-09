@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
@@ -9,7 +9,8 @@ const List = styled.ul`
   padding-top: 40px;
 `
 
-const CardList = ({ cards }) => {
+const CardList = ({ cards, deleteCard }) => {
+
   return (
     <div>
       <div>
@@ -21,11 +22,15 @@ const CardList = ({ cards }) => {
             <Card
               key={card.id}
               card={card}
+              deleteCard={deleteCard}
             />
           )
         })}
       </List>
     </div>
+
+
+
   )
 }
 

@@ -57,15 +57,38 @@ const SubmitButton = styled.button`
   }
 `
 
-const CardCreator = ({ title, body, setBody, setTitle, addCard }) => {
-
+const CardCreator = ({ createCard }) => {
   // const clearInputs = () => {
-
   // }
-
   // const prventFormDefault = ev => {
   //   ev.preventDefault()
   // }
+
+  const [title, setTitle] = useState('some post')
+  const [body, setBody] = useState('some body')
+
+  const addCard = (ev) => {
+    ev.preventDefault()
+
+    const newCard = {
+      id: Date.now(),
+      title,
+      body,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(
+        navigator.language,
+        {
+          hour: '2-digit',
+          minute: '2-digit'
+        }
+      )
+    }
+
+    createCard(newCard)
+
+    setTitle('')
+    setBody('')
+  }
 
   return (
     <>
@@ -73,7 +96,7 @@ const CardCreator = ({ title, body, setBody, setTitle, addCard }) => {
         Create Card
       </PageTitle>
       <Form
-        // onSubmit={prventFormDefault}
+      // onSubmit={prventFormDefault}
       >
         <TitleInput
           type="text"

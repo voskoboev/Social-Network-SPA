@@ -1,61 +1,95 @@
-import React, { useState, useEffect, useRef } from 'react'
-// import styled from 'styled-components'
+import React, { useState, useMemo, useEffect } from 'react'
+import styled from 'styled-components'
 import axios from 'axios'
 import CardList from '../components/CardList'
 import Loader from '../components/UI/Loader'
 import CardCreator from './CardCreator'
+import { getCards } from '../functions/getCards'
 
 // const MainWrapper = styled.div`
 //   background-color: lightblue;
 // `
 
+const SearchInput = styled.input`
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid #d9d9d9;
+`
+
 const Main = () => {
-  // const [images, setImages] = useState([])
 
-  const [cards, setCards] = useState([
-    // { id: 1, title: 'title1', body: 'body1' },
-    // { id: 2, title: 'title2', body: 'body2' },
-    // { id: 3, title: 'title3', body: 'body3' }
-  ])
+  const [cards, setCards] = useState([])
+  const [sorted, setSorted] = useState('')
+  const [searchRequest, setSearchRequest] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const [title, setTitle] = useState('1')
-  const [body, setBody] = useState('2')
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-  const addCard = (ev) => {
-    ev.preventDefault()
-
-    const newCard = {
-      id: Date.now(),
-      title,
-      body
+  async function fetchData() {
+    try {
+      setLoading(true)
+      const response = await getCards()
+      setCards(response.data)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
     }
-
-    console.log(title)
-    console.log(body)
-
-    setCards([...cards, newCard])
-    setTitle('')
-    setBody('')
   }
 
-  // useEffect(() => {
-  // }, [])
+  const sortedCards = useMemo(() => {
+    console.log('get sorted cards call!')
+
+    if (sorted) {
+      return [...cards].sort((a, b) => a[sorted].tolocaleCompare(b[sorted]))
+    }
+
+    return cards
+  }, [sorted, cards])
+
+  // const sortedCards = [...cards].sort((a, b) => a[sorted].tolocaleCompare(b[sorted]))
+
+  const sortedAndSearchedCards = useMemo(() => {
+    return sortedCards.filter(card => card.title.toLowerCase().includes(searchRequest))
+  }, [searchRequest, sortedCards])
+
+  const createCard = card => {
+    setCards([card, ...cards])
+  }
+
+  const deleteCard = card => {
+    setCards(cards.filter(cardItem => cardItem.id !== card.id))
+  }
 
   return (
     <>
       <h1>
         Main
       </h1>
+      <SearchInput
+        type="text"
+        placeholder="Search"
+        value={searchRequest}
+        onChange={ev => setSearchRequest(ev.target.value)}
+      />
       <CardCreator
-        title={title}
-        body={body}
-        setTitle={setTitle}
-        setBody={setBody}
-        addCard={addCard}
+        createCard={createCard}
       />
-      <CardList
-        cards={cards}
-      />
+      {
+        sortedAndSearchedCards.length === 0 // возможно заменить на card.length, поменяв условие
+          ?
+          <Loader />
+          :
+          <CardList
+            cards={sortedAndSearchedCards}
+            deleteCard={deleteCard}
+          />
+      }
+
 
 
       {/* {

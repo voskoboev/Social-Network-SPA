@@ -14,8 +14,8 @@ const CardItemTitle = styled.h2`
 `
 
 
-const Card = ({ card }) => {
-  const { title, body } = card
+const Card = ({ card, deleteCard }) => {
+  const { title, body, date, time } = card
 
   return (
     <CardItem>
@@ -25,6 +25,17 @@ const Card = ({ card }) => {
       <div>
         {body}
       </div>
+      <div>
+        {date}
+      </div>
+      <div>
+        {time}
+      </div>
+      <button
+        onClick={() => deleteCard(card)}
+      >
+        Delete
+      </button>
     </CardItem>
 
   )
