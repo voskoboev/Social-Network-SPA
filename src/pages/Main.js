@@ -5,6 +5,7 @@ import CardList from '../components/CardList'
 import Loader from '../components/UI/Loader'
 import CardCreator from './CardCreator'
 import { getCards } from '../functions/getCards'
+// import { getPagesCount, getPagesArr } from '../ancillary/ancillaryFns'
 
 // const MainWrapper = styled.div`
 //   background-color: lightblue;
@@ -25,21 +26,31 @@ const Main = () => {
   const [searchRequest, setSearchRequest] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const [cardsLimit, setCardsLimit] = useState(15)
+  const [cardsPage, setCardsPage] = useState(1)
+
+  // const [totalPages, setTotalPages] = useState(0)
+
   useEffect(() => {
     fetchData()
   }, [])
 
   async function fetchData() {
     try {
+
       setLoading(true)
-      const response = await getCards()
+
+      const response = await getCards(cardsLimit, cardsPage)
       setCards(response.data)
+
     } catch (err) {
       console.log(err)
     } finally {
       setLoading(false)
     }
   }
+
+  // console.log('total pages', totalPages);
 
   const sortedCards = useMemo(() => {
     console.log('get sorted cards call!')
@@ -50,8 +61,6 @@ const Main = () => {
 
     return cards
   }, [sorted, cards])
-
-  // const sortedCards = [...cards].sort((a, b) => a[sorted].tolocaleCompare(b[sorted]))
 
   const sortedAndSearchedCards = useMemo(() => {
     return sortedCards.filter(card => card.title.toLowerCase().includes(searchRequest))
@@ -89,8 +98,6 @@ const Main = () => {
             deleteCard={deleteCard}
           />
       }
-
-
 
       {/* {
         images.length === 0

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import Navbar from './components/Navbar'
 import Main from './pages/Main'
@@ -7,6 +7,7 @@ import About from './pages/About'
 import CreateCard from './pages/CardCreator'
 import Auth from './pages/Auth'
 import CardDetails from './components/CardDetails'
+import Error from './pages/Error'
 
 const Container = styled.div`
   max-width: 1170px;
@@ -24,7 +25,9 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/createcard" component={CreateCard} />
           <Route path="/auth" component={Auth} />
-          <Route path="/carddetails/:name" component={CardDetails} />
+          <Route path="/cards/:id" component={CardDetails} />
+          <Route path="/error" component={Error} />
+          <Redirect to="/error" /> 
         </Switch>
       </Container>
     </Router>

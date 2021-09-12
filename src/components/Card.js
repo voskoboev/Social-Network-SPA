@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const CardItem = styled.div`
@@ -15,7 +16,9 @@ const CardItemTitle = styled.h2`
 
 
 const Card = ({ card, deleteCard }) => {
-  const { title, body, date, time } = card
+  const { title, body, date, time, id } = card
+
+  const history = useHistory()
 
   return (
     <CardItem>
@@ -35,6 +38,11 @@ const Card = ({ card, deleteCard }) => {
         onClick={() => deleteCard(card)}
       >
         Delete
+      </button>
+      <button
+        onClick={() => history.push(`/cards/${id}`)}
+      >
+        Open
       </button>
     </CardItem>
 
