@@ -71,8 +71,6 @@ const Auth = () => {
 
   const handleRegister = () => {
     // console.log('register');
-
-
   }
 
   return (

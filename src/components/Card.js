@@ -14,14 +14,29 @@ const CardItemTitle = styled.h2`
   margin-bottom: 20px;
 `
 
+const CardImage = styled.img`
+  width: 200px;
+  height: 200px;
+`
+
 
 const Card = ({ card, deleteCard }) => {
-  const { title, body, date, time, id } = card
+  const { title, body, date, time, id, imageUrl } = Object.values(card)[0]
+
+  console.log('card card', card);
+
+  console.log('card list cards key', Object.values(card));
 
   const history = useHistory()
 
+  console.log('imgUrl', imageUrl);
+
   return (
     <CardItem>
+      <CardImage
+        src={imageUrl}
+        alt="card-img"
+      />
       <CardItemTitle>
         {title}
       </CardItemTitle>

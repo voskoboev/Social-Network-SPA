@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const PageTitle = styled.h1`
   text-align: center;
 `
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -19,13 +18,13 @@ const TitleInput = styled.input`
   border: 2px solid #d9d9d9;
 `
 
-// const ImageInput = styled.input`
-//   width: 300px;
-//   padding: 5px;
-//   margin-bottom: 20px;
-//   border-radius: 10px;
-//   border: 2px solid #d9d9d9;
-// `
+const ImageInput = styled.input`
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid #d9d9d9;
+`
 
 const Textarea = styled.textarea`
   resize: none;
@@ -66,6 +65,7 @@ const CardCreator = ({ createCard }) => {
 
   const [title, setTitle] = useState('some post')
   const [body, setBody] = useState('some body')
+  const [imageUrl, setImageUrl] = useState('')
 
   const addCard = (ev) => {
     ev.preventDefault()
@@ -74,6 +74,7 @@ const CardCreator = ({ createCard }) => {
       id: Date.now(),
       title,
       body,
+      imageUrl,
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(
         navigator.language,
@@ -88,6 +89,7 @@ const CardCreator = ({ createCard }) => {
 
     setTitle('')
     setBody('')
+    setImageUrl('')
   }
 
   return (
@@ -104,10 +106,12 @@ const CardCreator = ({ createCard }) => {
           value={title}
           onChange={ev => setTitle(ev.target.value)}
         />
-        {/* <ImageInput
-          type="file"
-          alt="image-input"
-        /> */}
+        <ImageInput
+          placeholder="Image URL"
+          type="text"
+          value={imageUrl}
+          onChange={ev => setImageUrl(ev.target.value)}
+        />
         <Textarea
           placeholder="Your Message"
           value={body}

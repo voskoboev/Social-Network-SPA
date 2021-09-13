@@ -11,18 +11,20 @@ const List = styled.ul`
 
 const CardList = ({ cards, deleteCard }) => {
 
+  console.log('card list cards', cards);
+
   return (
     <div>
       <div>
         Card List
       </div>
       <List>
-        {cards.map(card => {
+        {cards.map((card, index) => {
           return (
             <Card
-              key={card.id}
+              key={index}
               card={card}
-              deleteCard={deleteCard}
+              // deleteCard={deleteCard}
             />
           )
         })}
