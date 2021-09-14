@@ -8,29 +8,41 @@ import CreateCard from './pages/CardCreator'
 import Auth from './pages/Auth'
 import CardDetails from './components/CardDetails'
 import Error from './pages/Error'
+import Footer from './components/Footer'
 
-const Container = styled.div`
-  max-width: 1170px;
+// ширина без адаптивности
+const Container = styled.main`
+  width: 1170px;
   margin: 0 auto;
+  flex: 1 1 auto;
+`
+// ?
+const AppWrapper = styled.div` 
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const App = () => {
 
   return (
-    <Router>
-      <Navbar />
-      <Container>
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/about" component={About} />
-          <Route path="/createcard" component={CreateCard} />
-          <Route path="/auth" component={Auth} />
-          <Route path="/cards/:id" component={CardDetails} />
-          <Route path="/error" component={Error} />
-          <Redirect to="/error" /> 
-        </Switch>
-      </Container>
-    </Router>
+    <AppWrapper>
+      <Router>
+        <Navbar />
+        <Container>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/about" component={About} />
+            <Route path="/createcard" component={CreateCard} />
+            <Route path="/auth" component={Auth} />
+            <Route path="/cards/:id" component={CardDetails} />
+            <Route path="/error" component={Error} />
+            <Redirect to="/error" />
+          </Switch>
+        </Container>
+        <Footer />
+      </Router>
+    </AppWrapper>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const PageTitle = styled.h1`
@@ -40,14 +40,15 @@ const SubmitButton = styled.button`
   width: 300px;
   padding: 5px;
   border-radius: 10px;
-  border: 2px solid #d9d9d9;
-  background-color: #d9d9d9;
+  border: 2px solid red;
+  background-color: transparent;
   transition: .2s all ease;
   cursor: pointer;
 
   &:hover {
-    background-color: transparent;
+    background-color: red;
     transition: .2s all ease;
+    color: #fff;
   }
 
   &:active {
@@ -56,15 +57,9 @@ const SubmitButton = styled.button`
   }
 `
 
-const CardCreator = ({ createCard }) => {
-  // const clearInputs = () => {
-  // }
-  // const prventFormDefault = ev => {
-  //   ev.preventDefault()
-  // }
-
-  const [title, setTitle] = useState('some post')
-  const [body, setBody] = useState('some body')
+const CardCreator = ({ createCard, setVisibility }) => {
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
   const addCard = (ev) => {
@@ -90,6 +85,8 @@ const CardCreator = ({ createCard }) => {
     setTitle('')
     setBody('')
     setImageUrl('')
+
+    setVisibility(false)
   }
 
   return (

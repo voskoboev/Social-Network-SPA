@@ -2,8 +2,15 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+import homeImg from '../images/home.svg'
+import aboutImg from '../images/about.svg'
+import enterImg from '../images/enter.svg'
+import logoImg from '../images/logo.svg'
+
 const Header = styled.header`
-  border: 1px solid black;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: px solid #d9d9d9;
+  
 `
 
 const HeaderContainer = styled.div`
@@ -11,7 +18,8 @@ const HeaderContainer = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 15px;
 `
 
 const Nav = styled.nav`
@@ -19,7 +27,20 @@ const Nav = styled.nav`
 `
 
 const Logo = styled.a`
-  
+  display: flex;
+  align-items: center;
+
+`
+
+const LogoImage = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+`
+
+const NavImage = styled.img`
+  width: 25px;
+  height: 25px;
 `
 
 const MenuList = styled.ul`
@@ -28,7 +49,7 @@ const MenuList = styled.ul`
 
 const MenuListItem = styled.li`
   &:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 30px;
   }
 `
 
@@ -41,28 +62,40 @@ const Navbar = () => {
     <Header>
       <HeaderContainer>
         <Logo>
-          Social Network SPA
+          <LogoImage
+            src={logoImg}
+            alt="logo-img"
+          />
         </Logo>
         <Nav>
           <MenuList>
             <MenuListItem>
               <MenuListItemLink to="/" exact>
-                Home
+                <NavImage
+                  src={homeImg}
+                  alt="home"
+                />
               </MenuListItemLink>
             </MenuListItem>
             <MenuListItem>
               <MenuListItemLink to="/about">
-                About
+                <NavImage
+                  src={aboutImg}
+                  alt="about"
+                />
               </MenuListItemLink>
             </MenuListItem>
-            <MenuListItem>
+            {/* <MenuListItem>
               <MenuListItemLink to="/createcard">
                 CreateCard
               </MenuListItemLink>
-            </MenuListItem>
+            </MenuListItem> */}
             <MenuListItem>
               <MenuListItemLink to="/auth">
-                Auth
+                <NavImage
+                  src={enterImg}
+                  alt="about"
+                />
               </MenuListItemLink>
             </MenuListItem>
           </MenuList>

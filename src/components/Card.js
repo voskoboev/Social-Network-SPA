@@ -3,33 +3,57 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const CardItem = styled.div`
-  padding: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9d9d9;
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 `
 
 const CardItemTitle = styled.h2`
-  margin-bottom: 20px;
+
 `
 
 const CardImage = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+`
+
+const DateAndTimeContainer = styled.div`
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
+`
+
+const Date = styled.div`
+  color: #c9c9c9;
+`
+
+const CardBtn = styled.button`
+  width: 100%;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  transition: .3s all ease;
+  background-color: #d9d9d9;
+  
+  &:hover {
+    background-color: red;
+    transition: .3s all ease;
+  }
 `
 
 
 const Card = ({ card, deleteCard }) => {
-  const { title, body, date, time, id, imageUrl } = Object.values(card)[0]
-
-  console.log('card card', card);
-
-  console.log('card list cards key', Object.values(card));
+  const { title, body, date, time, id, imageUrl } = card
 
   const history = useHistory()
-
-  console.log('imgUrl', imageUrl);
 
   return (
     <CardItem>
@@ -37,28 +61,30 @@ const Card = ({ card, deleteCard }) => {
         src={imageUrl}
         alt="card-img"
       />
-      <CardItemTitle>
+      {/* <CardItemTitle>
         {title}
       </CardItemTitle>
       <div>
         {body}
-      </div>
-      <div>
-        {date}
-      </div>
-      <div>
-        {time}
-      </div>
-      <button
+      </div> */}
+      <DateAndTimeContainer>
+        <Date>
+          {date}
+        </Date>
+        <div>
+          {time}
+        </div>
+      </DateAndTimeContainer>
+      {/* <button
         onClick={() => deleteCard(card)}
       >
         Delete
-      </button>
-      <button
+      </button> */}
+      <CardBtn
         onClick={() => history.push(`/cards/${id}`)}
       >
         Open
-      </button>
+      </CardBtn>
     </CardItem>
 
   )

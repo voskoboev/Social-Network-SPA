@@ -8,9 +8,13 @@ export const getCards = (cardsLimit, cardsPage) => {
   //   }
   // })
 
-  return axios.post('https://social-network-d781a-default-rtdb.europe-west1.firebasedatabase.app/cards.json')
+  return axios.get('https://social-network-d781a-default-rtdb.europe-west1.firebasedatabase.app/cards.json')
 }
 
 export const getCardDetails = id => {
-  return axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  // return axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+
+  return axios.get(`https://social-network-d781a-default-rtdb.europe-west1.firebasedatabase.app/cards.json`)
+
+
 }

@@ -4,9 +4,10 @@ import Card from './Card'
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  
-  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);  
+  grid-gap: 30px;
   padding-top: 40px;
+  padding-bottom: 40px;
 `
 
 const CardList = ({ cards, deleteCard }) => {
@@ -14,10 +15,7 @@ const CardList = ({ cards, deleteCard }) => {
   console.log('card list cards', cards);
 
   return (
-    <div>
-      <div>
-        Card List
-      </div>
+    
       <List>
         {cards.map((card, index) => {
           return (
@@ -29,9 +27,6 @@ const CardList = ({ cards, deleteCard }) => {
           )
         })}
       </List>
-    </div>
-
-
 
   )
 }
